@@ -271,10 +271,14 @@ with tab2:
         approved_count = len(df_all[df_all["Status"] == "Approved"])
         pending_count = len(df_all[df_all["Status"] == "Pending"])
         
-        st.markdown(f'<div class="metric-box" style="border-top-color: #2563EB;"><b>💰 Total Business</b><br><span style="font-size:18px; font-weight:bold; color:#1E3A8A;">PKR {total_pkr:,.0f}</span></div>', unsafe_allow_html=True)
-pan style="font-size:18px; font-weight:bold; color:#1E3A8A;">PKR {total_pkr:,.0f}</span></div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="metric-box" style="border-top-color: #16A34A;"><b>✅ Approved Logs</b><br><span style="font-size:18px; font-weight:bold; color:#16A34A;">{approved_count} Passed</span></div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="metric-box" style="border-top-color: #DC2626;"><b>⏳ Pending Claims</b><br><span style="font-size:18px; font-weight:bold; color:#DC2626;">{pending_count} Active</span></div>', unsafe_allow_html=True)
+        # FIXED: Pure Python clean string variables used to completely avoid any template literal or HTML span crashes
+        txt_business = f"PKR {total_pkr:,.0f}"
+        txt_approved = f"{approved_count} Passed"
+        txt_pending = f"{pending_count} Active"
+        
+        st.markdown(f'<div class="metric-box" style="border-top-color: #2563EB;"><b>💰 Total Business</b><br><span style="font-size:18px; font-weight:bold; color:#1E3A8A;">{txt_business}</span></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="metric-box" style="border-top-color: #16A34A;"><b>✅ Approved Logs</b><br><span style="font-size:18px; font-weight:bold; color:#16A34A;">{txt_approved}</span></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="metric-box" style="border-top-color: #DC2626;"><b>⏳ Pending Claims</b><br><span style="font-size:18px; font-weight:bold; color:#DC2626;">{txt_pending}</span></div>', unsafe_allow_html=True)
         
         st.markdown('<br>', unsafe_allow_html=True)
         
@@ -312,27 +316,31 @@ pan style="font-size:18px; font-weight:bold; color:#1E3A8A;">PKR {total_pkr:,.0f
         all_ids = df_all["Computer ID"].tolist()
         target_id = st.selectbox("Choose Target ID to edit:", all_ids, key="modify_target_id")
         
-        # Fixed safely identifying active index locator rows
-        record_to_edit = df_all[df_all["Computer ID"] == int(target_id)].iloc[0]
+        # Safely identify selected data row
+        selected_row = df_all[df_all["Computer ID"] == int(target_id)]
         
-        new_patient_name = st.text_input("Change Patient Name:", value=str(record_to_edit["Patient Name"]), key="edit_pname")
-        new_patient_amount = st.number_input("Change Amount:", value=int(float(record_to_edit["Total Amount"])), key="edit_pamount")
-        
-        edit_btn = st.button("✏️ Push Modifications", key="fire_edit_action")
-        delete_btn = st.button("❌ Remove Entry Permanently", key="fire_delete_action")
-        
-        if edit_btn:
-            df_all.loc[df_all["Computer ID"] == int(target_id), "Patient Name"] = new_patient_name
-            df_all.loc[df_all["Computer ID"] == int(target_id), "Total Amount"] = new_patient_amount
-            df_all.to_csv(CSV_FILE, index=False)
-            st.success("Modifications updated!")
-            st.rerun()
+        if not selected_row.empty:
+            current_name = str(selected_row.iloc[0]["Patient Name"])
+            current_amount = int(float(selected_row.iloc[0]["Total Amount"]))
             
-        if delete_btn:
-            df_all = df_all[df_all["Computer ID"] != int(target_id)]
-            df_all.to_csv(CSV_FILE, index=False)
-            st.warning("Entry wiped.")
-            st.rerun()
+            new_patient_name = st.text_input("Change Patient Name:", value=current_name, key="edit_pname")
+            new_patient_amount = st.number_input("Change Amount:", value=current_amount, key="edit_pamount")
+            
+            edit_btn = st.button("✏️ Push Modifications", key="fire_edit_action")
+            delete_btn = st.button("❌ Remove Entry Permanently", key="fire_delete_action")
+            
+            if edit_btn:
+                df_all.loc[df_all["Computer ID"] == int(target_id), "Patient Name"] = new_patient_name
+                df_all.loc[df_all["Computer ID"] == int(target_id), "Total Amount"] = new_patient_amount
+                df_all.to_csv(CSV_FILE, index=False)
+                st.success("Modifications updated!")
+                st.rerun()
+                
+            if delete_btn:
+                df_all = df_all[df_all["Computer ID"] != int(target_id)]
+                df_all.to_csv(CSV_FILE, index=False)
+                st.warning("Entry wiped.")
+                st.rerun()
 
     st.markdown('</div>', unsafe_allow_html=True)
 
