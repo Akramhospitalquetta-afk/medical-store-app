@@ -9,7 +9,7 @@ from reportlab.lib import colors
 import io
 
 # --- 1. PAGE CONFIGURATION & LIGHT THEME STYLING ---
-st.set_page_config(page_title="HMS Mobile", layout="centered")  # Mobile ke liye centered structural layout best hai
+st.set_page_config(page_title="HMS Mobile", layout="centered")
 
 # Mobile responsive ultimate custom CSS overwrite protection engine
 st.markdown("""
@@ -76,7 +76,7 @@ label, .stWidgetLabel p {
     border: 2px solid #64748B !important;
     border-radius: 8px !important;
     background-color: #FFFFFF !important;
-    height: 46px !important; /* Perfect height for thumb taps */
+    height: 46px !important;
 }
 
 /* Text field inner wrapper styling for inputs */
@@ -104,7 +104,7 @@ div.stDownloadButton > button {
     font-size: 16px !important;
     font-weight: bold !important;
     width: 100% !important;
-    padding: 14px !important; /* Finger tap friendly padding size */
+    padding: 14px !important;
     border: none !important;
     border-radius: 8px !important;
     box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2) !important;
@@ -177,7 +177,7 @@ DOCTORS_LIST = [
     "Uzma Rasheed", "Dr. Izahr Ud Din Sb"
 ]
 
-# Tabs Definition - Hand tap layout optimized
+# Tabs Definition
 tab1, tab2, tab3 = st.tabs(["🔒 Add Patient", "📋 View Logs", "⏳ Claims System"])
 
 # ==========================================
@@ -266,11 +266,29 @@ with tab2:
     if df_all.empty:
         st.info("No records inside datastore.")
     else:
-        # Vertical stacking stats indicators optimized for phone screen sizes
+        # Metrics indicators
         total_pkr = pd.to_numeric(df_all["Total Amount"], errors="coerce").sum()
         approved_count = len(df_all[df_all["Status"] == "Approved"])
         pending_count = len(df_all[df_all["Status"] == "Pending"])
         
+        st.markdown(f'<div class="metric-box" style="border-top-color: #2563EB;"><b>💰 Total Business</b><br><span style="font-size:18px; font-weight:bold; color:#1E3A8A;">PKR {total_pkr:,.0f}</span></div>', unsafe_allow_html=True)
+pan style="font-size:18px; font-weight:bold; color:#1E3A8A;">PKR {total_pkr:,.0f}</span></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="metric-box" style="border-top-color: #16A34A;"><b>✅ Approved Logs</b><br><span style="font-size:18px; font-weight:bold; color:#16A34A;">{approved_count} Passed</span></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="metric-box" style="border-top-color: #DC2626;"><b>⏳ Pending Claims</b><br><span style="font-size:18px; font-weight:bold; color:#DC2626;">{pending_count} Active</span></div>', unsafe_allow_html=True)
+        
+        st.markdown('<br>', unsafe_allow_html=True)
+        
+        # Mobile search vertical alignment
+        search_query = st.text_input("🔍 Quick Search (Name / ID):", key="search_query_all")
+        status_filter = st.selectbox("🚦 Filter Status:", ["All", "Pending", "Approved"], key="status_filter_all")
+            
+        filtered_df = df_all.copy()
+        if search_query:
+            filtered_df = filtered_df[
+                filtered_df['Patient Name'].astype(str).str.contains(search_query, case=False, na=False) |
+                filtered_df['Healthcard ID'].astype(str).str.contains(search_query, case=False, na=False) |
+                filtered_df['Computer ID'].astype(str).str.contains(search_query, case=False, na=False)
+            ]
         if status_filter != "All":
             filtered_df = filtered_df[filtered_df['Status'] == status_filter]
             
