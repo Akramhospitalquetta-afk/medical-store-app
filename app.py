@@ -114,12 +114,10 @@ div.stDownloadButton > button:hover {
 </style>
 """, unsafe_allow_html=True)
 
-# --- 2. CORE DATABASE SETTINGS ---
 # --- 2. CORE DATABASE SETTINGS & AUTO-REPAIR ENGINE ---
-CSV_FILE = "healthcard_data"
+CSV_FILE = "healthcard_data.csv"
 COLUMNS = ["Computer ID", "Healthcard ID", "Date", "Patient Name", "Room No", "Doctor Name", "Total Amount", "Status"]
 
-# Yeh logic khali file banna bilkul block kar dega
 if not os.path.exists(CSV_FILE) or os.path.getsize(CSV_FILE) == 0:
     pd.DataFrame(columns=COLUMNS).to_csv(CSV_FILE, index=False)
 else:
@@ -166,34 +164,50 @@ with tab1:
     
     next_id = get_next_id()
     
-    comp_id = st.text_input("Computer ID:", value=str(next_id), disabled=True)
-    h_id = st.text_input("Healthcard ID:", key="input_hid")
-    p_date = st.date_input("Date:", datetime.now(), key="input_date")
-    p_name = st.text_input("Patient Name:", key="input_name")
-    room_no = st.text_input("Room No:", key="input_room")
-    doc_name = st.selectbox("Doctor Name:", ["Select Doctor"] + DOCTORS_LIST, key="input_doc")
-    amount = st.text_input("Total Amount:", key="input_amount")
-    
-    st.markdown('<br>', unsafe_allow_html=True)
-    b_col1, b_col2, b_col3 = st.columns(3)
-    
-    with b_col1:
-        if st.button("💾 Save Patient Data", key="action_save"):
-            if not h_id or not p_name or doc_name == "Select Doctor" or not amount:
-                st.error("Please fill all fields properly before saving!")
+    # Humne pooray inputs ko st.form ke andar wrap kar diya hai taake data lose na ho click par
+    with st.form(key="patient_entry_form", clear_on_submit=False):
+        comp_id = st.text_input("Computer ID:", value=str(next_id), disabled=True)
+        h_id = st.text_input("Healthcard ID:", key="input_hid")
+        p_date = st.date_input("Date:", datetime.now(), key="input_date")
+        p_name = st.text_input("Patient Name:", key="input_name")
+        room_no = st.text_input("Room No:", key="input_room")
+        doc_name = st.selectbox("Doctor Name:", ["Select Doctor"] + DOCTORS_LIST, key="input_doc")
+        amount = st.number_input("Total Amount (PKR):", min_value=0, step=100, key="input_amount")
+        
+        st.markdown('<br>', unsafe_allow_html=True)
+        
+        # Form ke andar submit button hona lazmi hai
+        submit_button = st.form_submit_button("💾 Save Patient Data")
+        
+        if submit_button:
+            if not h_id or not p_name or doc_name == "Select Doctor" or amount <= 0:
+                st.error("Please fill all fields properly and ensure amount is greater than 0!")
             else:
-                df = pd.read_csv(CSV_FILE)
-                new_row = [next_id, h_id, p_date.strftime('%d/%m/%Y'), p_name, room_no, doc_name, amount, "Pending"]
-                df.loc[len(df)] = new_row
-                df.to_csv(CSV_FILE, index=False)
-                st.success("Record Saved Successfully!")
-                st.rerun()
-                
-    with b_col2:
-        if st.button("🧹 Clear Form Fields", key="action_clear"):
-            st.rerun()
-            
-    with b_col3:
+                try:
+                    df = pd.read_csv(CSV_FILE)
+                    new_row = [int(next_id), h_id, p_date.strftime('%d/%m/%Y'), p_name, room_no, doc_name, float(amount), "Pending"]
+                    
+                    # Naya record add karne ka behtar tareeqa
+                    df.loc[len(df)] = new_row
+                    df.to_csv(CSV_FILE, index=False)
+                    
+                    st.success(f"Record Saved Successfully under ID: {next_id}!")
+                    
+                    # Session state me flag set kar rahe hain taake pdf generate ho sake summary page refresh par
+                    st.session_state["last_saved_record"] = {
+                        "comp_id": next_id, "h_id": h_id, "date": p_date.strftime('%d/%m/%Y'),
+                        "name": p_name, "room": room_no, "doc": doc_name, "amount": amount
+                    }
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"Error saving to CSV file: {e}")
+
+    # Agar koi data save hua ho to slip download karne ka option form ke bahar dikhega
+    if "last_saved_record" in st.session_state:
+        rec = st.session_state["last_saved_record"]
+        st.markdown('<hr style="border:1px solid #CBD5E1;">', unsafe_allow_html=True)
+        st.info(f"✨ Last Saved Record Summary (ID: {rec['comp_id']}) is ready for download.")
+        
         pdf_styles = getSampleStyleSheet()
         pdf_buffer = io.BytesIO()
         pdf_doc = SimpleDocTemplate(pdf_buffer, pagesize=letter)
@@ -205,8 +219,8 @@ with tab1:
         ]
         
         table_data = [
-            ["Computer ID", comp_id], ["Healthcard ID", h_id], ["Date", p_date.strftime('%d/%m/%Y')],
-            ["Patient Name", p_name], ["Room No", room_no], ["Doctor Name", doc_name], ["Total Amount", f"PKR {amount}"]
+            ["Computer ID", str(rec['comp_id'])], ["Healthcard ID", rec['h_id']], ["Date", rec['date']],
+            ["Patient Name", rec['name']], ["Room No", rec['room']], ["Doctor Name", rec['doc']], ["Total Amount", f"PKR {rec['amount']}"]
         ]
         receipt_table = Table(table_data)
         receipt_table.setStyle(TableStyle([
@@ -220,136 +234,87 @@ with tab1:
         pdf_doc.build(pdf_elements)
         
         st.download_button(
-            label="🖨️ Download Print Slip",
+            label="🖨️ Download Print Slip for Saved Record",
             data=pdf_buffer.getvalue(),
-            file_name=f"Slip_{next_id}.pdf",
+            file_name=f"Slip_{rec['comp_id']}.pdf",
             mime="application/pdf",
-            key="action_print"
+            key="action_download_pdf"
         )
-        
     st.markdown('</div>', unsafe_allow_html=True)
 
-
 # ==========================================
-# --- TAB 2: VIEW ALL RECORDS SHEET ---
+# --- TAB 2: VIEW ALL RECORDS ---
 # ==========================================
 with tab2:
     st.markdown('<div class="card-container">', unsafe_allow_html=True)
-    
-    f_col1, f_col2, f_col3, f_col4 = st.columns([2, 1.5, 2, 1.5])
-    f_col5, f_col6, f_col7, f_col8 = st.columns([1.5, 1.5, 1, 1])
+    st.markdown('<div class="form-header">Master Database Directory</div>', unsafe_allow_html=True)
     
     df_all = pd.read_csv(CSV_FILE)
-if not df_all.empty and "Status" in df_all.columns:
-    status_filter_options = ["All"] + list(df_all["Status"].dropna().unique())
-else:
-    status_filter_options = ["All", "Pending", "Paid"]
-
     
-    with f_col1: search_q = st.text_input("🔍 Search Patient:", placeholder="Name or ID...", key="v_search")
-    with f_col2: sel_status = st.selectbox("📋 Status Filter:", status_filter_options, key="v_status")
-    with f_col3: sel_doc = st.selectbox("👨‍⚕️ Doctor Filter:", ["All"] + DOCTORS_LIST, key="v_doc")
-    with f_col4:
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("🖨️ PDF Print Report", key="v_pdf_btn"):
-            st.info("Full layout report print processing triggered.")
-            
-    with f_col5: d_from = st.date_input("📅 Date From:", datetime.now(), key="v_from")
-    with f_col6: d_to = st.date_input("📅 Date To:", datetime.now(), key="v_to")
-    with f_col7:
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("🔄 Refresh Data", key="v_refresh"): st.rerun()
-    with f_col8:
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.download_button("📊 Export Excel", data=df_all.to_csv(index=False).encode('utf-8'), file_name="Healthcard_All_Records.csv", mime="text/csv", key="v_excel")
-
-    st.markdown("<hr style='border-color: #CBD5E1; margin-top: 20px; margin-bottom: 20px;'>", unsafe_allow_html=True)
-
-    if not df_all.empty:
-        df_filtered = df_all.copy()
-        
-        # 1. Date formatting block create karein (Iske bagair error aata hai)
-        df_filtered['Date_Parsed'] = pd.to_datetime(df_filtered['Date'], format='%d/%m/%Y', errors='coerce')
-        if df_filtered['Date_Parsed'].isna().all():
-            df_filtered['Date_Parsed'] = pd.to_datetime(df_filtered['Date'], format='%Y-%m-%d', errors='coerce')
-
-        # 2. Filtering Core Engine Operations
-        if search_q:
-            df_filtered = df_filtered[df_filtered['Patient Name'].astype(str).str.contains(search_q, case=False, na=False) | df_filtered['Computer ID'].astype(str).str.contains(search_q, case=False, na=False)]
-        if sel_status != "All": 
-            df_filtered = df_filtered[df_filtered['Status'] == sel_status]
-        if sel_doc != "All": 
-            df_filtered = df_filtered[df_filtered['Doctor Name'] == sel_doc]
-            
-        # 3. Safe Date Range Filter check
-        if 'Date_Parsed' in df_filtered.columns:
-            df_filtered = df_filtered[(df_filtered['Date_Parsed'].dt.date >= d_from) & (df_filtered['Date_Parsed'].dt.date <= d_to)]
-        
-        display_final_df = df_filtered.drop(columns=['Date_Parsed'], errors='ignore')
-        st.dataframe(display_final_df, use_container_width=True, hide_index=True)
-        total_filtered_sum = pd.to_numeric(df_filtered['Total Amount'], errors='coerce').sum()
-        st.markdown(f'<div style="background-color: #059669; padding: 12px; border-radius: 4px; font-weight: bold; font-size: 18px; color: white;">Grand Total (Filtered Data): PKR {total_filtered_sum:,.2f}</div>', unsafe_allow_html=True)
+    if df_all.empty:
+        st.info("No logs or records found inside the datastore.")
     else:
-        st.info("System database sheet currently clean or empty.")
-        
+        search_col1, search_col2 = st.columns(2)
+        with search_col1:
+# ==========================================
+# --- TAB 2: VIEW ALL RECORDS ---
+# ==========================================
+with tab2:
+    st.markdown('<div class="card-container">', unsafe_allow_html=True)
+    st.markdown('<div class="form-header">Master Database Directory</div>', unsafe_allow_html=True)
+    
+    df_all = pd.read_csv(CSV_FILE)
+    
+    if df_all.empty:
+        st.info("No logs or records found inside the datastore.")
+    else:
+        search_col1, search_col2 = st.columns(2)
+        with search_col1:
+            search_query = st.text_input("🔍 Quick Search (Name or ID):", key="search_query_all")
+        with search_col2:
+            status_filter = st.selectbox("🚦 Filter By Status:", ["All", "Pending", "Approved"], key="status_filter_all")
+            
+        filtered_df = df_all.copy()
+        if search_query:
+            filtered_df = filtered_df[
+                filtered_df['Patient Name'].astype(str).str.contains(search_query, case=False, na=False) |
+                filtered_df['Healthcard ID'].astype(str).str.contains(search_query, case=False, na=False) |
+                filtered_df['Computer ID'].astype(str).str.contains(search_query, case=False, na=False)
+            ]
+        if status_filter != "All":
+            filtered_df = filtered_df[filtered_df['Status'] == status_filter]
+            
+        st.dataframe(filtered_df, use_container_width=True, hide_index=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-    
-
-
 # ==========================================
-# --- TAB 3: CLAIMS OPERATIONS LOGIC ---
+# --- TAB 3: MANAGE CLAIMS (PENDING) ---
 # ==========================================
 with tab3:
     st.markdown('<div class="card-container">', unsafe_allow_html=True)
+    st.markdown('<div class="form-header">Claims Settlement Module</div>', unsafe_allow_html=True)
     
-    df_master_claims = pd.read_csv(CSV_FILE)
-    df_pending_only = df_master_claims[df_master_claims["Status"] == "Pending"].copy()
+    df_claims = pd.read_csv(CSV_FILE)
+    pending_records = df_claims[df_claims["Status"] == "Pending"]
     
-    c_row1, c_row2 = st.columns(2)
-    with c_row1: 
-        search_pending_val = st.text_input("🔍 Filter Search Pending:", placeholder="Type name or code reference...", key="p_search")
-    
-    if search_pending_val and not df_pending_only.empty:
-        df_pending_active = df_pending_only[df_pending_only['Patient Name'].astype(str).str.contains(search_pending_val, case=False, na=False) | df_pending_only['Computer ID'].astype(str).str.contains(search_pending_val, case=False, na=False)]
-    else: 
-        df_pending_active = df_pending_only.copy()
-        
-    calc_pending_sum = pd.to_numeric(df_pending_active['Total Amount'], errors='coerce').sum()
-    with c_row2:
-        st.markdown(f'<div style="background-color: #D97706; padding: 12px; border-radius: 4px; font-weight: bold; font-size: 18px; text-align: center; color: white; margin-top: 18px;">Total Pending Amount: PKR {calc_pending_sum:,.2f}</div>', unsafe_allow_html=True)
-        
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    if not df_pending_active.empty:
-        df_pending_active.insert(0, "Select", False)
-        interactive_editor = st.data_editor(df_pending_active, hide_index=True, use_container_width=True, key="p_editor_grid")
-        
-        extracted_selected_ids = interactive_editor[interactive_editor["Select"] == True]["Computer ID"].tolist()
-        
-        act_col1, act_col2 = st.columns(2)
-        with act_col1:
-            if st.button("☑️ Mark Selected Patient as PAID (Money Received)", key="p_paid_act"):
-                if extracted_selected_ids:
-                    df_upd = pd.read_csv(CSV_FILE)
-                    df_upd.loc[df_upd["Computer ID"].isin(extracted_selected_ids), "Status"] = "Paid"
-                    df_upd.to_csv(CSV_FILE, index=False)
-                    st.success("Selected records marked as Paid successfully!")
-                    st.rerun()
-                else:
-                    st.warning("Please tick mark at least one patient record checkbox.")
-                    
-        with act_col2:
-            if st.button("🗑️ Delete Selected Record", key="p_del_act"):
-                if extracted_selected_ids:
-                    df_upd = pd.read_csv(CSV_FILE)
-                    df_upd = df_upd[~df_upd["Computer ID"].isin(extracted_selected_ids)]
-                    df_upd.to_csv(CSV_FILE, index=False)
-                    st.error("Selected patient records dropped entirely.")
-                    st.rerun()
-                else:
-                    st.warning("Please tick mark at least one patient record checkbox.")
+    if pending_records.empty:
+        st.success("All clear! There are no outstanding pending claims found.")
     else:
-        st.info("Great! No outstanding pending transaction records found.")
+        st.dataframe(pending_records, use_container_width=True, hide_index=True)
+        st.markdown('<hr style="border:1px solid #CBD5E1;">', unsafe_allow_html=True)
         
+        claim_col1, claim_col2 = st.columns(2)
+        
+        with claim_col1:
+            pending_ids = pending_records["Computer ID"].tolist()
+            selected_id = st.selectbox("Select Computer ID to process clearance:", pending_ids, key="claim_select_id")
+            
+        with claim_col2:
+            st.markdown('<div style="margin-top: 32px;"></div>', unsafe_allow_html=True)
+            if st.button("✅ Approve Select Claim", key="action_approve_claim"):
+                df_claims.loc[df_claims["Computer ID"] == int(selected_id), "Status"] = "Approved"
+                df_claims.to_csv(CSV_FILE, index=False)
+                st.success(f"Claim associated with ID {selected_id} approved!")
+                st.rerun()
+                
     st.markdown('</div>', unsafe_allow_html=True)
