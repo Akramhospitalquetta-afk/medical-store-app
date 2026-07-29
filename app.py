@@ -164,7 +164,6 @@ with tab1:
     
     next_id = get_next_id()
     
-    # Humne pooray inputs ko st.form ke andar wrap kar diya hai taake data lose na ho click par
     with st.form(key="patient_entry_form", clear_on_submit=False):
         comp_id = st.text_input("Computer ID:", value=str(next_id), disabled=True)
         h_id = st.text_input("Healthcard ID:", key="input_hid")
@@ -176,7 +175,6 @@ with tab1:
         
         st.markdown('<br>', unsafe_allow_html=True)
         
-        # Form ke andar submit button hona lazmi hai
         submit_button = st.form_submit_button("💾 Save Patient Data")
         
         if submit_button:
@@ -186,14 +184,11 @@ with tab1:
                 try:
                     df = pd.read_csv(CSV_FILE)
                     new_row = [int(next_id), h_id, p_date.strftime('%d/%m/%Y'), p_name, room_no, doc_name, float(amount), "Pending"]
-                    
-                    # Naya record add karne ka behtar tareeqa
                     df.loc[len(df)] = new_row
                     df.to_csv(CSV_FILE, index=False)
                     
                     st.success(f"Record Saved Successfully under ID: {next_id}!")
                     
-                    # Session state me flag set kar rahe hain taake pdf generate ho sake summary page refresh par
                     st.session_state["last_saved_record"] = {
                         "comp_id": next_id, "h_id": h_id, "date": p_date.strftime('%d/%m/%Y'),
                         "name": p_name, "room": room_no, "doc": doc_name, "amount": amount
@@ -202,7 +197,6 @@ with tab1:
                 except Exception as e:
                     st.error(f"Error saving to CSV file: {e}")
 
-    # Agar koi data save hua ho to slip download karne ka option form ke bahar dikhega
     if "last_saved_record" in st.session_state:
         rec = st.session_state["last_saved_record"]
         st.markdown('<hr style="border:1px solid #CBD5E1;">', unsafe_allow_html=True)
@@ -242,20 +236,6 @@ with tab1:
         )
     st.markdown('</div>', unsafe_allow_html=True)
 
-# ==========================================
-# --- TAB 2: VIEW ALL RECORDS ---
-# ==========================================
-with tab2:
-    st.markdown('<div class="card-container">', unsafe_allow_html=True)
-    st.markdown('<div class="form-header">Master Database Directory</div>', unsafe_allow_html=True)
-    
-    df_all = pd.read_csv(CSV_FILE)
-    
-    if df_all.empty:
-        st.info("No logs or records found inside the datastore.")
-    else:
-        search_col1, search_col2 = st.columns(2)
-        with search_col1:
 # ==========================================
 # --- TAB 2: VIEW ALL RECORDS ---
 # ==========================================
