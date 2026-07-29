@@ -102,16 +102,28 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- 2. CORE DATABASE SETTINGS ---
+# --- 2. CORE DATABASE SETTINGS & AUTO-REPAIR ENGINE ---
 CSV_FILE = "healthcard_data.csv"
 COLUMNS = ["Computer ID", "Healthcard ID", "Date", "Patient Name", "Room No", "Doctor Name", "Total Amount", "Status"]
 
-if not os.path.exists(CSV_FILE):
+# Yeh logic khali file banna bilkul block kar dega
+if not os.path.exists(CSV_FILE) or os.path.getsize(CSV_FILE) == 0:
     pd.DataFrame(columns=COLUMNS).to_csv(CSV_FILE, index=False)
+else:
+    try:
+        check_df = pd.read_csv(CSV_FILE)
+        if check_df.empty or "Status" not in check_df.columns:
+            pd.DataFrame(columns=COLUMNS).to_csv(CSV_FILE, index=False)
+    except:
+        pd.DataFrame(columns=COLUMNS).to_csv(CSV_FILE, index=False)
 
 def get_next_id():
-    df = pd.read_csv(CSV_FILE)
-    if not df.empty and "Computer ID" in df.columns:
-        return int(df["Computer ID"].max()) + 1
+    try:
+        df = pd.read_csv(CSV_FILE)
+        if not df.empty and "Computer ID" in df.columns:
+            return int(df["Computer ID"].max()) + 1
+    except:
+        pass
     return 101
 
 DOCTORS_LIST = [
