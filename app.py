@@ -13,98 +13,105 @@ st.set_page_config(page_title="Healthcard Management System", layout="wide")
 
 # Foolproof CSS for solid borders and zero spacing conflicts
 st.markdown("""
-    <style>
-    /* Main Background Light Gray */
-    .stApp { background-color: #F1F5F9; color: #0F172A; }
-    
-    /* Tabs Layout Styling */
-    button[data-baseweb="tab"] {
-        font-size: 18px !important;
-        font-weight: bold !important;
-        color: #475569 !important;
-        padding: 10px 20px !important;
-    }
-    
-    /* Active Tab Highlight (Blue) */
-    button[data-baseweb="tab"][aria-selected="true"] {
-        color: #FFFFFF !important;
-        background-color: #2563EB !important;
-        border-radius: 4px 4px 0px 0px;
-    }
-    
-    /* Inner Card Containers (Pure White) */
-    .card-container {
-        background-color: #FFFFFF;
-        padding: 25px;
-        border-radius: 8px;
-        border: 2px solid #CBD5E1 !important; /* Thick main box container border */
-        margin-top: 15px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    }
-    
-    /* Top Headers Inside Card (Dark Blue) */
-    .form-header {
-        background-color: #1E3A8A;
-        color: white;
-        text-align: center;
-        padding: 12px;
-        font-weight: bold;
-        font-size: 22px;
-        border-radius: 4px;
-        margin-bottom: 25px;
-    }
-    
-    /* Input Labels */
-    label { font-size: 16px !important; font-weight: bold !important; color: #1E293B !important; }
-    
-       /* --- THE ULTIMATE SOLID BOX BORDER & MOBILE LIGHT OVERWRITE FIX --- */
-    .stTextInput > div, .stDateInput > div, .stSelectbox > div, .stNumberInput > div {
-        border: 2px solid #475569 !important;
-        border-radius: 6px !important;
-        background-color: #FFFFFF !important;
-    }
+<style>
+/* Main Background Light Gray */
+.stApp {
+    background-color: #F1F5F9;
+    color: #0F172A;
+}
 
-    /* Mobile browser dark mode override text protection */
-    .stTextInput input, .stDateInput input, .stSelectbox div[data-baseweb="select"] {
-        color: #0F172A !important;
-        font-size: 16px !important;
-        font-weight: bold !important;
-        background-color: #FFFFFF !important;
-        -webkit-text-fill-color: #0F172A !important; /* Force text color on iPhone/Safari */
-    }
-    
-    /* Text field inner wrapper styling for inputs */
-    div[data-baseweb="input"] {
-        background-color: #FFFFFF !important;
-    }
+/* Tabs Layout Styling */
+button[data-baseweb="tab"] {
+    font-size: 18px !important;
+    font-weight: bold !important;
+    color: #475569 !important;
+    padding: 10px 20px !important;
+}
 
-    /* Inner input font layer cleanup */
-    .stTextInput input, .stDateInput input, .stSelectbox div[data-baseweb="select"] {
-        color: #0F172A !important;
-        font-size: 16px !important;
-        font-weight: bold !important;
-        background-color: transparent !important;
-    }
-    
-    /* --- UNIVERSAL FOOLPROOF BUTTON FIX --- */
-    div.stButton > button, .stDownloadButton button {
-        background-color: #2563EB !important; /* Solid Royal Blue */
-        color: #FFFFFF !important; /* Pure White Text */
-        font-size: 16px !important;
-        font-weight: bold !important;
-        width: 100% !important;
-        padding: 12px !important;
-        border: none !important;
-        border-radius: 6px !important;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
-    }
-    
-    div.stButton > button:hover, .stDownloadButton button:hover {
-        background-color: #1D4ED8 !important;
-        color: #FFFFFF !important;
-    }
-    </style>
+/* Active Tab Highlight (Blue) */
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: #FFFFFF !important;
+    background-color: #2563EB !important;
+    border-radius: 4px 4px 0px 0px;
+}
+
+/* Inner Card Containers (Pure White) */
+.card-container {
+    background-color: #FFFFFF;
+    padding: 25px;
+    border-radius: 8px;
+    border: 2px solid #CBD5E1 !important; /* Thick main box container border */
+    margin-top: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Top Headers Inside Card (Dark Blue) */
+.form-header {
+    background-color: #1E3A8A;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 22px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
+
+/* Input Labels */
+label, .stWidgetLabel p {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #1E293B !important;
+}
+
+/* --- THE ULTIMATE SOLID BOX BORDER & MOBILE LIGHT OVERWRITE FIX --- */
+.stTextInput > div > div, 
+.stDateInput > div > div, 
+.stSelectbox > div > div, 
+.stNumberInput > div > div {
+    border: 2px solid #475569 !important;
+    border-radius: 6px !important;
+    background-color: #FFFFFF !important;
+}
+
+/* Text field inner wrapper styling for inputs */
+div[data-baseweb="input"], div[data-baseweb="select"] {
+    background-color: #FFFFFF !important;
+}
+
+/* Mobile browser dark mode override text protection */
+.stTextInput input, 
+.stDateInput input, 
+.stNumberInput input,
+.stSelectbox div[data-baseweb="select"] span {
+    color: #0F172A !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    background-color: transparent !important;
+    -webkit-text-fill-color: #0F172A !important; /* Force text color on iPhone/Safari */
+}
+
+/* --- UNIVERSAL FOOLPROOF BUTTON FIX --- */
+div.stButton > button, 
+div.stDownloadButton > button {
+    background-color: #2563EB !important; /* Solid Royal Blue */
+    color: #FFFFFF !important; /* Pure White Text */
+    font-size: 16px !important;
+    font-weight: bold !important;
+    width: 100% !important;
+    padding: 12px !important;
+    border: none !important;
+    border-radius: 6px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+div.stButton > button:hover, 
+div.stDownloadButton > button:hover {
+    background-color: #1D4ED8 !important;
+    color: #FFFFFF !important;
+}
+</style>
 """, unsafe_allow_html=True)
 
 # --- 2. CORE DATABASE SETTINGS ---
