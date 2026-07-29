@@ -215,7 +215,11 @@ with tab2:
     f_col5, f_col6, f_col7, f_col8 = st.columns([1.5, 1.5, 1, 1])
     
     df_all = pd.read_csv(CSV_FILE)
-    status_filter_options = ["All"] + list(df_all["Status"].dropna().unique()) if not df_all.empty else ["All"]
+if not df_all.empty and "Status" in df_all.columns:
+    status_filter_options = ["All"] + list(df_all["Status"].dropna().unique())
+else:
+    status_filter_options = ["All", "Pending", "Paid"]
+
     
     with f_col1: search_q = st.text_input("🔍 Search Patient:", placeholder="Name or ID...", key="v_search")
     with f_col2: sel_status = st.selectbox("📋 Status Filter:", status_filter_options, key="v_status")
