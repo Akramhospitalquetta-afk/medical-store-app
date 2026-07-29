@@ -312,6 +312,7 @@ pan style="font-size:18px; font-weight:bold; color:#1E3A8A;">PKR {total_pkr:,.0f
         all_ids = df_all["Computer ID"].tolist()
         target_id = st.selectbox("Choose Target ID to edit:", all_ids, key="modify_target_id")
         
+        # Fixed safely identifying active index locator rows
         record_to_edit = df_all[df_all["Computer ID"] == int(target_id)].iloc[0]
         
         new_patient_name = st.text_input("Change Patient Name:", value=str(record_to_edit["Patient Name"]), key="edit_pname")
