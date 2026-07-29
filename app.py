@@ -58,19 +58,25 @@ st.markdown("""
     /* Input Labels */
     label { font-size: 16px !important; font-weight: bold !important; color: #1E293B !important; }
     
-    /* --- THE ULTIMATE SOLID BOX BORDER FIX --- */
-    /* Target absolute low level elements directly to force standard input box look */
+       /* --- THE ULTIMATE SOLID BOX BORDER & MOBILE LIGHT OVERWRITE FIX --- */
     .stTextInput > div, .stDateInput > div, .stSelectbox > div, .stNumberInput > div {
-        border: 2px solid #475569 !important; /* Heavy dark grey structural border boxes */
+        border: 2px solid #475569 !important;
         border-radius: 6px !important;
         background-color: #FFFFFF !important;
-        box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) !important;
     }
 
-    /* Input focus overrides styling */
-    .stTextInput > div:focus-within, .stDateInput > div:focus-within, .stSelectbox > div:focus-within {
-        border-color: #2563EB !important;
-        box-shadow: 0 0 0 1px #2563EB !important;
+    /* Mobile browser dark mode override text protection */
+    .stTextInput input, .stDateInput input, .stSelectbox div[data-baseweb="select"] {
+        color: #0F172A !important;
+        font-size: 16px !important;
+        font-weight: bold !important;
+        background-color: #FFFFFF !important;
+        -webkit-text-fill-color: #0F172A !important; /* Force text color on iPhone/Safari */
+    }
+    
+    /* Text field inner wrapper styling for inputs */
+    div[data-baseweb="input"] {
+        background-color: #FFFFFF !important;
     }
 
     /* Inner input font layer cleanup */
