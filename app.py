@@ -116,7 +116,7 @@ div.stDownloadButton > button:hover {
 
 # --- 2. CORE DATABASE SETTINGS ---
 # --- 2. CORE DATABASE SETTINGS & AUTO-REPAIR ENGINE ---
-CSV_FILE = "healthcard_data.csv"
+CSV_FILE = "healthcard_data"
 COLUMNS = ["Computer ID", "Healthcard ID", "Date", "Patient Name", "Room No", "Doctor Name", "Total Amount", "Status"]
 
 # Yeh logic khali file banna bilkul block kar dega
