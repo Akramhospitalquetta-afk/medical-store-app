@@ -1,132 +1,132 @@
-Computer ID,Healthcard ID,Date,Patient Name,Room No,Doctor Name,Total Amount,Status
-101,1,01/07/2026,Fouzai,417 Rec13/7,Dr.Saira,9786,Pending
-102,2,01/07/2026,Aronzaib,G.W Rec29/7,Dr.Tahir Aslam,6279,Pending
-103,3,01/07/2026,Sabiha,G.W Rec11/7,Dr.Tahir Aslam,9027,Pending
-104,4,01/07/2026,Bibi Rabia,409 Rec12/7,Dr.Arif,5187,Pending
-105,5,01/07/2026,M Waris,415,Dr.Arif,4679,Pending
-106,6,01/07/2026,Bibi Faria,415B Rec 10/7,Dr.Arif,4241,Pending
-107,7,01/07/2026,Lal Khatoon,413,Dr.Kishwer Ur Rehman,12002,Pending
-108,8,01/07/2026,Bibi Sara,409,Dr.Kishwer Ur Rehman,12433,Pending
-109,9,02/07/2026,Ali Asghar,G.W Rec43/7,Dr.M.Baksh Shawani,14888,Pending
-110,10,02/07/2026,Mohi ud din,G.W Rec46/7,Dr.Ahmed Newaz,1113,Pending
-111,11,02/07/2026,Junaid Ahmed,G.W,Dr.Tahir Aslam,4607,Pending
-112,12,02/07/2026,Bibi Rafia,406 Rec41/7,Dr.Arif,2567,Pending
-113,13,02/07/2026,M.Arslan,G.W2 Rec,Dr.Arif,7534,Pending
-114,14,02/07/2026,Habib ul R,G.W1 Rec,Dr.Arif,7021,Pending
-115,15,02/07/2026,Bibi Kafia,409B Rec,Dr.Arif,4215,Pending
-116,16,02/07/2026,Shakir,414,Dr.Sajida,13167,Pending
-117,17,02/07/2026,M Yousuf,GW Rec7,Dr.Tahir Aslam,5737,Pending
-118,18,02/07/2026,Zalikha,415 Rec82,Dr.Saira,12840,Pending
-119,19,02/07/2026,B/O Fauzi,Nicu Rec2,Dr.Noor Baloch Sb,2371,Pending
-120,20,02/07/2026,Zahra,Nicu,Dr.Noor Baloch Sb,3344,Pending
-121,21,02/07/2026,40422 Nicu,Dr.Noor Baloch Sb,2318,Pending
-122,22,02/07/2026,M Hussain,GW Rec10,Dr.Janzaib Kakar Sb,10814,Pending
-123,23,02/07/2026,Mir Zaib,413 Rec98,Dr.Masha Khan Sb,7334,Pending
-124,24,02/07/2026,Hajira,409,Dr.Masha Khan Sb,14939,Pending
-125,25,02/07/2026,Rimsha,406,Dr.Kishwer Ur Rehman,15713,Pending
-126,26,02/07/2026,Sania,415 Rec95,Dr.Arif,7997,Pending
-127,27,02/07/2026,Gull Mina,413 Rec97,Dr.Arif,5033,Pending
-128,28,02/07/2026,Abida,409 Rec87,Dr.Arif,14981,Pending
-129,29,03/07/2026,Hameeda,413 Rec83,Dr.Arif,7742,Pending
-130,30,03/07/2026,Abdul Naf,G.W,Dr.Tahir Aslam,6151,Pending
-131,31,04/07/2026,Saima,G.W Rec33,Dr.Tahir Aslam,11440,Pending
-132,32,04/07/2026,Farooq,410 Rec51,Dr.Ahmed Nawaz Sb,6137,Pending
-133,33,04/07/2026,Saira,G.W,Dr.Ahmed Nawaz Sb,6279,Pending
-134,34,04/07/2026,Wali Khan,415,Dr.Abdul Ghaffar Sb,12840,Pending
-135,35,04/07/2026,Haleema,409 Rec11,Dr.Arif,13433,Pending
-136,36,04/07/2026,Najeeb ul,406 Rec12,Dr.Arif,5187,Pending
-137,37,04/07/2026,Palwasha,Nicu Rec2,Dr.Noor Baloch Sb,4022,Pending
-138,38,04/07/2026,Noor Bibi,Nicu Rec1,Dr.Noor Baloch Sb,2518,Pending
-139,39,05/07/2026,Rozi Khan,410,Dr.Tahir Aslam,6137,Pending
-140,40,05/07/2026,M Yousuf,415 Rec23,Dr.Saira,12840,Pending
-141,41,05/07/2026,Bibi Amin,414 Rec42,Dr.Kishwer Ur Rehman,13167,Pending
-142,42,05/07/2026,Naqeeb U,413,Dr.Kishwer Ur Rehman,5202,Pending
-143,43,05/07/2026,Lal Gul,GW Rec7,Dr.Tahir Aslam,5737,Pending
-144,44,05/07/2026,Abdul Ha,GW,Dr.Tahir Aslam,6279,Pending
-145,45,06/07/2026,Saleh M,G.W,Dr.Ahmed Nawaz Sb,6279,Pending
-146,46,06/07/2026,Nazia,G.W Rec,Dr.Ahmed Nawaz Sb,6279,Pending
-147,47,06/07/2026,Niaz M,G.W,Dr.Ahmed Nawaz Sb,6279,Pending
-148,48,06/07/2026,Mehmood,G.W,Dr.Ahmed Nawaz Sb,6279,Pending
-149,49,06/07/2026,Bibi Mar,413 Rec90,Dr.Kishwer Ur Rehman,5202,Pending
-150,50,06/07/2026,Abdul Sa,GW,Dr.Tahir Aslam,6279,Pending
-151,51,07/07/2026,Habibull,GW,Dr.Tahir Aslam,6279,Pending
-152,52,07/07/2026,Bibi Naj,415 Rec82,Dr.Saira,12840,Pending
-153,53,07/07/2026,Bibi Sh,409 Rec,Dr.Masha Khan Sb,14939,Pending
-154,54,07/07/2026,Hameeda,406,Dr.Kishwer Ur Rehman,15713,Pending
-155,55,07/07/2026,Jan M,410,Dr.Tahir Aslam,6137,Pending
-156,56,08/07/2026,Sardar M,410,Dr.Tahir Aslam,6137,Pending
-157,57,08/07/2026,Haseena,415,Dr.Saira,12840,Pending
-158,58,08/07/2026,Noor M,GW,Dr.Tahir Aslam,6279,Pending
-159,59,09/07/2026,M Asif,410,Dr.Ahmed Nawaz Sb,6137,Pending
-160,60,09/07/2026,Syed M,415,Dr.Saira,12840,Pending
-161,61,09/07/2026,Bibi Zeen,414 Rec42,Dr.Kishwer Ur Rehman,13167,Pending
-162,62,09/07/2026,Asmatull,GW,Dr.Tahir Aslam,6279,Pending
-163,63,09/07/2026,M Ramza,410,Dr.Tahir Aslam,6137,Pending
-164,64,10/07/2026,Abdul Ba,410,Dr.Tahir Aslam,6137,Pending
-165,65,10/07/2026,Tor Jan,410,Dr.Tahir Aslam,6137,Pending
-166,66,10/07/2026,Niamatul,415,Dr.Saira,12840,Pending
-167,67,11/07/2026,M Ibrahim,410,Dr.Tahir Aslam,6137,Pending
-168,68,11/07/2026,Raz M,410,Dr.Tahir Aslam,6137,Pending
-169,69,11/07/2026,M Gul,410,Dr.Tahir Aslam,6137,Pending
-170,70,12/07/2026,Ghulam M,GW,Dr.Tahir Aslam,6279,Pending
-171,71,12/07/2026,Bibi Mar,409,Dr.Kishwer Ur Rehman,12433,Pending
-172,72,12/07/2026,M Naeem,410,Dr.Ahmed Nawaz Sb,6137,Pending
-173,73,13/07/2026,Bibi Gul,415,Dr.Saira,12840,Pending
-174,74,13/07/2026,M Zahir,410,Dr.Tahir Aslam,6137,Pending
-175,75,13/07/2026,Tor Jan,GW,Dr.Tahir Aslam,6279,Pending
-176,76,14/07/2026,Abdul Ha,410,Dr.Tahir Aslam,6137,Pending
-177,77,14/07/2026,M Ismail,GW,Dr.Tahir Aslam,6279,Pending
-178,78,14/07/2026,Bibi Rah,415,Dr.Saira,12840,Pending
-179,79,15/07/2026,Rozi M,410,Dr.Tahir Aslam,6137,Pending
-180,80,15/07/2026,Naseebul,410,Dr.Tahir Aslam,6137,Pending
-181,81,15/07/2026,Bibi Sha,409,Dr.Kishwer Ur Rehman,12433,Pending
-182,82,16/07/2026,Allah M,410,Dr.Tahir Aslam,6137,Pending
-183,83,16/07/2026,M Sadiq,410,Dr.Tahir Aslam,6137,Pending
-184,84,16/07/2026,Bibi Naz,415,Dr.Saira,12840,Pending
-185,85,17/07/2026,Hayat M,GW,Dr.Tahir Aslam,6279,Pending
-186,86,17/07/2026,Bibi Gha,415,Dr.Saira,12840,Pending
-187,87,17/07/2026,M Rafiq,410,Dr.Tahir Aslam,6137,Pending
-188,88,18/07/2026,Abdul Qa,410,Dr.Tahir Aslam,6137,Pending
-189,89,18/07/2026,M Wali,410,Dr.Tahir Aslam,6137,Pending
-190,90,18/07/2026,Bibi Sha,415,Dr.Saira,12840,Pending
-191,91,19/07/2026,M Aslam,410,Dr.Tahir Aslam,6137,Pending
-192,92,19/07/2026,M Nabi,410,Dr.Tahir Aslam,6137,Pending
-193,93,19/07/2026,Bibi Zeen,415,Dr.Saira,12840,Pending
-194,94,20/07/2026,M Dawood,410,Dr.Tahir Aslam,6137,Pending
-195,95,20/07/2026,Abdul Ma,410,Dr.Tahir Aslam,6137,Pending
-196,96,20/07/2026,Bibi Rah,415,Dr.Saira,12840,Pending
-197,97,21/07/2026,M Rafiq,410,Dr.Tahir Aslam,6137,Pending
-198,98,21/07/2026,Bibi Gha,415,Dr.Saira,12840,Pending
-199,99,21/07/2026,M Jan,410,Dr.Tahir Aslam,6137,Pending
-200,100,22/07/2026,Abdul Ra,GW,Dr.Tahir Aslam,6279,Pending
-201,101,22/07/2026,Bibi Naz,415,Dr.Saira,12840,Pending
-202,102,22/07/2026,M Sadiq,410,Dr.Tahir Aslam,6137,Pending
-203,103,23/07/2026,Haji M,410,Dr.Tahir Aslam,6137,Pending
-204,104,23/07/2026,Bibi Sha,415,Dr.Saira,12840,Pending
-205,105,23/07/2026,M Asif,410,Dr.Tahir Aslam,6137,Pending
-206,106,24/07/2026,M Nabi,410,Dr.Tahir Aslam,6137,Pending
-207,107,24/07/2026,Bibi Zeen,415,Dr.Saira,12840,Pending
-208,108,24/07/2026,M Dawood,410,Dr.Tahir Aslam,6137,Pending
-209,109,25/07/2026,Abdul Ma,410,Dr.Tahir Aslam,6137,Pending
-210,110,25/07/2026,Sagra,415,Dr.Kishwer Ur Rehman,14202,Pending
-211,111,25/07/2026,Samiullah,G.W,Dr.Arif,4539,Pending
-212,112,25/07/2026,B/o Waheed,Nicu,Dr.Noor Baloch Sb,888,Pending
-213,113,25/07/2026,B/o Nabeela,Nicu,Dr.Noor Baloch Sb,1844,Pending
-214,114,25/07/2026,Abdul Lateef,HDU,Dr.Hidayat Ullah Sb,8947,Pending
-215,115,26/07/2026,Shad,G.W 5,Dr.Arif,3989,Pending
-216,116,26/07/2026,Mohibullah,G.W 5,Dr.Arif,4278,Pending
-217,117,26/07/2026,Zafar Ullah,G.W 1,Dr.Tahir Aslam,4662,Pending
-218,118,26/07/2026,Rimsha,409,Dr.Uzma Sohail,9372,Pending
-219,119,26/07/2026,Naqeeb Ullah,HDU,Dr.Arif,33082,Pending
-220,120,26/07/2026,Sadia Parveen,G.W,Dr.Ahmed Nawaz Sb,1161,Pending
-221,121,26/07/2026,M.Wali Ikram,409,Dr.Arif,4792,Pending
-222,122,26/07/2026,M.Saleem,G.W,Dr.Masha Khan Sb,3835,Pending
-223,123,26/07/2026,Bibi shazia,406,Dr.Ahmed Nawaz Sb,6046,Pending
-224,124,26/07/2026,Samiullah,G.W,Dr.Arif,4125,Pending
-225,125,27/07/2026,Hazoor Khatoon,406B,Dr Naseer Ahmed Khan,3170,Pending
-226,126,27/07/2026,Amreela,415,Dr Kiswer Ur Rehman,13819,Pending
-227,127,27/07/2026,Mola Dad,410,Dr.Tahir Aslam,6137,Pending
-228,128,27/07/2026,Masooma,406,Dr.Masha Khan,10782,Pending
-229,129,27/07/2026,Muhammad Anas,409,Dr.Arif,4947,Pending
-230,130,27/07/2026,Shabeer Ahmed,410,Dr.Tahir Aslam,3443,Pending
-231,131,27/07/2026,Muhammad Noor Jan,413,Dr.Arif,4393,Pending
+Computer ID	Healthcard ID	Date	Patient Name	Room No	Doctor Name	Total Amount	Status
+101	1	01/07/2026	Fouzai	417  Rec13/7	Dr.Saira	9786	Pending
+102	2	01/07/2026	Aronzaib	G,W Rec29/7	Dr.Tahir Aslam	6279	Pending
+103	3	01/07/2026	Sabiha	G.W Rec11/7	Dr.Tahir Aslam	9027	Pending
+104	4	01/07/2026	Bibi Rabia	409 Rec12/7	Dr.Arif	5187	Pending
+105	5	01/07/2026	M Waris	415	Dr.Arif	4679	Pending
+106	6	01/07/2026	Bibi Faria	415B Rec 10/7	Dr.Arif	4241	Pending
+107	7	01/07/2026	Lal Khatoon	413	Dr.Kishwer Ur Rehman	12002	Pending
+108	8	02/07/2026	Bibi Sara	409	Dr.Kishwer Ur Rehman	12433	Pending
+109	9	02/07/2026	Ali Asghar	G.W Rec43/7	Dr.M.Baksh Shawani	14888	Pending
+110	10	02/02/2026	Mohi ud din	G.W Rec46/7	DR.Ahmed Nawaz	1113	Pending
+111	11	02/07/2026	Junaid Ahmed	G.W	Dr.Tahir Aslam	4607	Pending
+112	12	02/07/2026	Bibi Rafia	406 Rec41/7	Dr.Arif	2567	Pending
+113	13	02/07/2026	M.Arslan	G.W2 Rec35/7	Dr.Arif	7534	Pending
+114	14	02/07/2026	Habib ul Rehman	G.W1 Rec36/7	Dr.Arif	7021	Pending
+115	15	02/07/2026	Bibi Kafia	409B Rec 37/	Dr.Arif	4215	Pending
+116	16	03/07/2026	Shakir	414	Dr.Sajida	13167	Pending
+117	17	03/07/2026	M Yousuf	GW  Rec70/7	Dr.Tahir Aslam	5737	Pending
+118	18	03/07/2026	Zalikha	415 Rec82/7	Dr.Saira	12840	Pending
+119	19	05/07/2026	B/O Fauzia	Nicu Rec23/7	Dr.Noor Baloch Sb	2371	Pending
+120	20	05/07/2026	Zahra	Nicu 	Dr.Noor Baloch Sb	3344	Pending
+121	21	05/07/2026	40422	Nicu	Dr.Noor Baloch Sb	2318	Pending
+122	22	05/07/2026	M Hassain	GW Rec105/7	Dr.Janzaib	10814	Pending
+123	23	05/07/2026	Mir Zaib	413 Rec98/7	Dr.Masha Khan	7334	Pending
+124	24	05/07/2026	Hajira	409	Dr.M.Baksh Shawani	14939	Pending
+125	25	05/07/2026	Rimsha	406	Dr.Kishwer Ur Rehman	15713	Pending
+126	26	05/07/2026	Sania	415  Rec95/7	Dr.Arif	7997	Pending
+127	27	05/07/2026	Gull Mina	413 Rec97/7	Dr.Arif	5033	Pending
+128	28	05/07/2026	Dilbar	G.W	Dr Arif	4427	Pending
+129	29	05/07/2026	Mir Hassan	G.W Rec 106/7	Dr.Tahir Aslam	7322	Pending
+130	30	05/07/2026	Khair un Nisa	409	Dr	16900	Pending
+131	31	06/07/2026	M Hakeem	409 Rec115/7	Dr.Arif	4326	Pending
+132	32	06/07/2026	Shabana	409	Dr.Kishwer Ur Rehman	13965	Pending
+133	33	07/07/2026	Bibi Saleema	406 rec123/7	Dr.Janzaib	22848	Pending
+134	34	07/07/2026	A.Matullah	G.W	Dr.Tahir Aslam	5512	Pending
+135	35	07/07/2026	Noor	GW Rec 68/7	Dr.Naseer	4239	Pending
+136	36	08/07/2026	Rehmat Khan	GW	Dr.Arif	4813	Pending
+137	37	08/07/2026	Shereen Hadir	GW	Dr.Arif	4446	Pending
+138	38	08/07/2026	Zarina	406	DR.Ahmed Nawaz	5855	Pending
+139	39	08/07/2026	Abdul Raziq	G.w	DR.Ahmed Nawaz	7302	Pending
+140	40	08/07/2026	Haseena	409 Rec139/7	Dr.Arif	5268	Pending
+141	41	08/07/2026	Sameena	406	DR.Ahmed Nawaz	9404	Pending
+142	42	08/07/2026	Bibi Parveen	409	Dr.Kishwer Ur Rehman	12605	Pending
+143	43	08/07/2026	Bibi Bakhtawar	406A Rec144/7	Dr.Tahir Aslam	9316	Pending
+144	44	08/07/2026	Din Muhammad	GW	Dr.Tahir Aslam	9260	Pending
+145	45	08/07/2026	Hameedullah	GW Rec 140/7	Dr.Arif	6594	Pending
+146	46	08/07/2026	Badar Jamil	412 Rec150/7	Dr Janzaib	24270	Pending
+147	47	09/07/2026	Maira	406	Dr.M.Baksh Shawani	10925	Pending
+148	48	09/07/2026	Bibi Habiba	413	Dr.Iqbal	9829	Pending
+149	49	09/07/2026	Asifa Bibi	413	Dr.Iqbal	8617	Pending
+150	50	09/07/2026	Ayesha	415	Dr.Arif	4044	Pending
+151	51	09/07/2026	Abdul Razzaq	GW	Dr.Tahir Aslam	5499	Pending
+152	52	09/07/2026	Faiza	410	Dr.Tahir Aslam	6188	Pending
+153	53	09/07/2026	Nadia	409	Dr.Tahir Aslam	5903	Pending
+154	54	09/07/2026	Bibi Raheema	415	Dr.Arif	5238	Pending
+155	55	10/07/2026	Bibi Shaheena	409	Dr.Kishwer Ur Rehman	8143	Pending
+156	56	10/07/2026	Bibi Abida	406	Dr.Arif	5893	Pending
+157	57	10/07/2026	Sharaf ud Din	GW	Dr.Iqbal	8520	Pending
+158	58	10/07/2026	Ahad Nazir	GW	Dr.Arif	4439	Pending
+159	59	10/07/2026	Bibi Afra	409	Dr.Tahir Aslam	6494	Pending
+160	60	10/07/2026	Iram Bibi	Hdu	Dr.Hidyatullah	54877	Pending
+161	61	12/07/2026	Baby of Janat	Nicu	Dr.Noor Baloch Sb	1649	Pending
+162	62	12/07/2026	B/O Nadira	Nicu	Dr.Noor Baloch Sb	2450	Pending
+163	63	12/07/2026	Abdul Jabbar	HDU	Dr.Hidyatullah	28173	Pending
+164	64	12/07/2026	Ayan Ali	412	Dr.Tahir Aslam	6303	Pending
+165	65	12/07/2026	Khalid	GW	Dr.M.Baksh Shawani	10400	Pending
+166	66	12/07/2026	Shabeer Ahmed	GW	Dr.Tahir Aslam	6991	Pending
+167	67	12/07/2026	Sumaira	406	Dr.Kishwer Ur Rehman	12061	Pending
+168	68	12/07/2026	M Rashid	GW	Dr.Tahir Aslam	4156	Pending
+169	69	14/07/2026	M Usman	GW	Dr.Iqbal	5777	Pending
+170	70	14/07/2026	Rafiullah	GW	Dr.Arif	4788	Pending
+171	71	14/07/2026	Shahida	415	Dr.Arif	10538	Pending
+172	72	14/07/2026	M Saleem	GW	Dr.Arif	4915	Pending
+173	73	15/07/2026	Wahid Bakhsh	G.W	Dr.M.Baksh Shawani	12183	Pending
+174	74	15/07/2026	M Ayaz	GW	Dr.Tahir Aslam	4016	Pending
+175	75	15/07/2026	Sabira	409	Dr.Saira	11955	Pending
+176	76	15/07/2026	Bibi Shakira	409	Dr.Iqbal	12525	Pending
+177	77	15/07/2026	Taj Muhammad	G.W	Dr.Tahir Aslam	8567	Pending
+178	78	15/07/2026	Haseen Ullah	G,W	Dr.Tahir Aslam	4483	Pending
+179	79	15/07/2026	B/O Sumreen	Nicu	Dr.Noor Baloch Sb	1930	Pending
+180	80	14/07/2026	M.Sarban Agha	410	Dr. Muhammad Arif Sb	4850	Pending
+181	81	14/07/2026	Yaseen	415	Dr. Mohammad Bakhsh Shawani Sb	12347	Pending
+182	82	15/07/2026	Abdul Rasheed	410	Dr. Tahir Aslam Sb	6030	Pending
+183	83	16/07/2026	Bibi saleema	406	Dr. Kishwer Rehman Sb	14212	Pending
+184	84	16/07/2026	Abdul Kareem	409	Dr. Tahir Aslam Sb	3506	Pending
+185	85	16/07/2026	Shaista Malik	409	Dr. Kishwer Rehman Sb	12818	Pending
+186	86	17/07/2026	Laiba Bibi	410	Dr. Bashir Agha Sb	6414	Pending
+187	87	17/07/2026	Aliya	G.w	Dr. Tahir Aslam Sb	7953	Pending
+188	88	17/07/2026	M.Yaqoob	G.w	Dr. Tahir Aslam Sb	4122	Pending
+189	89	17/07/2026	Zareef Khan	G.w	Dr.Masha Khan	8588	Pending
+190	90	17/07/2026	Khadija	415	Dr.Masha Khan	18418	Pending
+191	91	18/07/2026	B/o Aneela	Nicu	Dr.Noor Baloch Sb	14694	Pending
+192	92	18/07/2026	Samreen	413	Dr.Iqbal Sb	8699	Pending
+193	93	19/07/2026	M.Masoom	410	Dr.Hidyat Ullah Sb	22754	Pending
+194	94	20/07/2026	Sakina	415	Dr.Tahir Aslam	9379	Pending
+195	95	20/07/2026	Maimoona	413	Dr.Saira	10725	Pending
+196	96	20/07/2026	Naida Imtaz	415	Dr.Tahir Aslam	5261	Pending
+197	97	20/07/2026	Atta Ullah	409	Dr.Tahir Aslam	6545	Pending
+198	98	20/07/2026	Khair Muhammad	409	Dr.Ahmed Nawaz	5443	Pending
+199	99	21/07/2026	Fouzai	G.w	Dr.Saira	12329	Pending
+200	100	22/07/2026	Bibi Abida	415	Dr.Kishwer Rehman	18912	Pending
+201	101	22/07/2026	M.Rasool	G.w	Dr.Tahir Aslam	5797	Pending
+202	102	22/07/2026	Abdul Ghafoor	G.w	Dr.Tahir Aslam	5508	Pending
+203	103	22/07/2026	Jamsheed	415	Dr.Tahir Aslam	8942	Pending
+204	104	22/07/2026	Bibi Zahida	406	Dr.Arif	7911	Pending
+205	105	22/07/2026	Abdullah Jan	G.w	Dr.Arif	5980	Pending
+206	106	22/07/2026	Abida	409	Dr.Iqbal Sb	17119	Pending
+207	107	23/07/2026	Manzoor Ahmed	G.w	Dr.Tahir Aslam	5376	Pending
+208	108	23/07/2026	Naseem Begum	409	Dr.Tahir Aslam	8538	Pending
+209	109	23/07/2026	Gull Bibi	409	Dr.Kishwer Rehman	9752	Pending
+210	110	23/07/2026	Saqra	415	Dr.Kishwer Rehman	14202	Pending
+211	111	23/07/2026	Samiullah	G.w	Dr.Arif	4539	Pending
+212	112	23/07/2026	B/o Waheed	Nicu	Dr.Noor Baloch Sb	888	Pending
+213	113	23/07/2026	B/O Nabeela	Nicu	Dr.Noor Baloch Sb	1844	Pending
+214	114	23/07/2026	Abdul Lateef	HDU	Dr.Hidyat Ullah Sb	8947	Pending
+215	115	24/07/2026	Shad	G.W 5	Dr.Arif	3989	Pending
+216	116	24/07/2026	Mohibullah	G.W 5	Dr.Arif	4278	Pending
+217	117	24/07/2026	Zafar Ullah	G.W 1	Dr.Tahir Aslam	4662	Pending
+218	118	24/07/2026	Rimsha	409	Dr.	9372	Pending
+219	119	24/07/2026	Naqeeb Ullah	HDU	Dr.Arif	33082	Pending
+220	120	25/07/2026	Sadia Parveen	G.W	Dr.Ahmed Nawaz	1161	Pending
+221	121	25/07/2026	M.Wali Ikram	409	Dr.Arif	4792	Pending
+222	122	25/07/2026	M.Saleem	G.W	Dr.Masha Khan	3835	Pending
+223	123	25/07/2026	Bibi shazia	406	Dr.Ahmed Nawaz	6046	Pending
+224	124	25/07/2026	Samiullah	G.W	Dr.Arif	4125	Pending
+225	125	26/07/2026	Hazoor Khatoon	406B	Dr Naseer Ahmed Khan	3170	Pending
+226	126	26/07/2026	Amreela	415	Dr Kiswer Ur Rehman	13819	Pending
+227	127	26/07/2026	Mola Dad	410	Dr.Tahir Aslam	6137	Pending
+228	128	26/07/2026	Masooma	406	Dr.Masha Khan	10782	Pending
+229	129	26/07/2026	Muhammad Anas	409	Dr.Arif	4947	Pending
+230	130	27/07/2026	Shabeer Ahmed	410	Dr.Tahir Aslam	3443	Pending
+231	131	27/07/2026	Muhammad Noor Jan	413	Dr.Arif	4393	Pending
