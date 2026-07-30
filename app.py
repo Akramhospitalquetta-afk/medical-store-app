@@ -14,7 +14,18 @@ st.set_page_config(page_title="HMS Mobile", layout="centered")
 st.markdown("""
 <style>
 .stApp { background-color: #F8FAFC; color: #0F172A; }
-button[data-baseweb="tab"] { font-size: 15px !important; font-weight: bold !important; color: #475569 !important; padding: 12px 10px !important; flex-grow: 1 !important; text-align: center !important; }
+/* TABS FIX: Text color white aur peeche background box dark taake hamesha nazar aaye */
+button[data-baseweb="tab"] { 
+    font-size: 15px !important; 
+    font-weight: bold !important; 
+    color: #FFFFFF !important; 
+    background-color: #1E293B !important; 
+    padding: 12px 10px !important; 
+    flex-grow: 1 !important; 
+    text-align: center !important; 
+    margin: 2px !important;
+    border-radius: 6px !important;
+}
 button[data-baseweb="tab"][aria-selected="true"] { color: #FFFFFF !important; background-color: #2563EB !important; border-radius: 6px; }
 .card-container { background-color: #FFFFFF; padding: 16px; border-radius: 12px; border: 2px solid #E2E8F0 !important; margin-top: 10px; margin-bottom: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 .form-header { background-color: #1E3A8A; color: white; text-align: center; padding: 12px; font-weight: bold; font-size: 18px; border-radius: 8px; margin-bottom: 20px; }
@@ -133,9 +144,9 @@ with tab2:
                 with col2: st.markdown(f'<div class="metric-box">✅ Approved Logs<br><b>{approved_count} Passed</b></div>', unsafe_allow_html=True)
                 with col3: st.markdown(f'<div class="metric-box">⏳ Pending Claims<br><b>{pending_count} Active</b></div>', unsafe_allow_html=True)
                 
-                search_query = st.text_input("🔍 Quick Search (Name / ID):", key="search_query_live_final_new")
+                search_query = st.text_input("🔍 Quick Search (Name / ID):", key="search_query_tabs_fixed")
                 status_options = ["All", "Pending", "Approved"]
-                selected_status = st.selectbox("🚦 Filter Status:", status_options, key="status_filter_live_final_new")
+                selected_status = st.selectbox("🚦 Filter Status:", status_options, key="status_filter_tabs_fixed")
                 
                 filtered_df = df_all.copy()
                 if search_query:
