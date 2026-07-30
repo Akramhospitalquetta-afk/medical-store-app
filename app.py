@@ -11,147 +11,30 @@ import io
 # --- 1. PAGE CONFIGURATION & LIGHT THEME STYLING ---
 st.set_page_config(page_title="HMS Mobile", layout="centered")
 
-# Mobile responsive ultimate custom CSS overwrite protection engine
 st.markdown("""
 <style>
-/* Main Background Light Gray */
-.stApp {
-    background-color: #F8FAFC;
-    color: #0F172A;
-}
-
-/* Tabs Layout Styling for Touch Fingers */
-button[data-baseweb="tab"] {
-    font-size: 15px !important;
-    font-weight: bold !important;
-    color: #475569 !important;
-    padding: 12px 10px !important;
-    flex-grow: 1 !important;
-    text-align: center !important;
-}
-
-/* Active Tab Highlight (Blue) */
-button[data-baseweb="tab"][aria-selected="true"] {
-    color: #FFFFFF !important;
-    background-color: #2563EB !important;
-    border-radius: 6px;
-}
-
-/* Inner Card Containers (Pure White) */
-.card-container {
-    background-color: #FFFFFF;
-    padding: 16px;
-    border-radius: 12px;
-    border: 2px solid #E2E8F0 !important;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-
-/* Top Headers Inside Card (Dark Blue) */
-.form-header {
-    background-color: #1E3A8A;
-    color: white;
-    text-align: center;
-    padding: 12px;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
-
-/* Input Labels */
-label, .stWidgetLabel p {
-    font-size: 15px !important;
-    font-weight: bold !important;
-    color: #1E293B !important;
-    margin-bottom: 4px !important;
-}
-
-/* --- THE ULTIMATE SOLID BOX BORDER & MOBILE LIGHT OVERWRITE FIX --- */
-.stTextInput > div > div, 
-.stDateInput > div > div, 
-.stSelectbox > div > div, 
-.stNumberInput > div > div {
-    border: 2px solid #64748B !important;
-    border-radius: 8px !important;
-    background-color: #FFFFFF !important;
-    height: 46px !important;
-}
-
-/* Text field inner wrapper styling for inputs */
-div[data-baseweb="input"], div[data-baseweb="select"] {
-    background-color: #FFFFFF !important;
-}
-
-/* Mobile browser dark mode override text protection */
-.stTextInput input, 
-.stDateInput input, 
-.stNumberInput input,
-.stSelectbox div[data-baseweb="select"] span {
-    color: #0F172A !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
-    background-color: transparent !important;
-    -webkit-text-fill-color: #0F172A !important;
-}
-
-/* --- UNIVERSAL FOOLPROOF TOUCH BUTTON FIX --- */
-div.stButton > button, 
-div.stDownloadButton > button {
-    background-color: #2563EB !important;
-    color: #FFFFFF !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
-    width: 100% !important;
-    padding: 14px !important;
-    border: none !important;
-    border-radius: 8px !important;
-    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2) !important;
-    margin-bottom: 10px !important;
-}
-
-div.stButton > button:hover, 
-div.stDownloadButton > button:hover {
-    background-color: #1D4ED8 !important;
-    color: #FFFFFF !important;
-}
-
-/* Metric Counter Blocks Mobile Optimized layout */
-.metric-box {
-    background-color: #FFFFFF;
-    border-top: 4px solid #2563EB;
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-/* Custom Mobile-first Record Card */
-.mobile-patient-card {
-    background-color: #F8FAFC;
-    border: 1px solid #E2E8F0;
-    border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 12px;
-}
+.stApp { background-color: #F8FAFC; color: #0F172A; }
+button[data-baseweb="tab"] { font-size: 15px !important; font-weight: bold !important; color: #475569 !important; padding: 12px 10px !important; flex-grow: 1 !important; text-align: center !important; }
+button[data-baseweb="tab"][aria-selected="true"] { color: #FFFFFF !important; background-color: #2563EB !important; border-radius: 6px; }
+.card-container { background-color: #FFFFFF; padding: 16px; border-radius: 12px; border: 2px solid #E2E8F0 !important; margin-top: 10px; margin-bottom: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.form-header { background-color: #1E3A8A; color: white; text-align: center; padding: 12px; font-weight: bold; font-size: 18px; border-radius: 8px; margin-bottom: 20px; }
+label, .stWidgetLabel p { font-size: 15px !important; font-weight: bold !important; color: #1E293B !important; margin-bottom: 4px !important; }
+.stTextInput > div > div, .stDateInput > div > div, .stSelectbox > div > div, .stNumberInput > div > div { border: 2px solid #64748B !important; border-radius: 8px !important; background-color: #FFFFFF !important; height: 46px !important; }
+div[data-baseweb="input"], div[data-baseweb="select"] { background-color: #FFFFFF !important; }
+.stTextInput input, .stDateInput input, .stNumberInput input, .stSelectbox div[data-baseweb="select"] span { color: #0F172A !important; font-size: 16px !important; font-weight: bold !important; background-color: transparent !important; -webkit-text-fill-color: #0F172A !important; }
+div.stButton > button, div.stDownloadButton > button { background-color: #2563EB !important; color: #FFFFFF !important; font-size: 16px !important; font-weight: bold !important; width: 100% !important; padding: 14px !important; border: none !important; border-radius: 8px !important; box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2) !important; margin-bottom: 10px !important; }
+div.stButton > button:hover, div.stDownloadButton > button:hover { background-color: #1D4ED8 !important; color: #FFFFFF !important; }
+.metric-box { background-color: #FFFFFF; border-top: 4px solid #2563EB; padding: 12px; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-align: center; margin-bottom: 10px; font-size: 14px; color: #0F172A; }
+.mobile-patient-card { background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
 </style>
 """, unsafe_allow_html=True)
 
-# --- 2. CORE DATABASE SETTINGS & AUTO-REPAIR ENGINE ---
+# --- 2. CORE DATABASE SETTINGS ---
 CSV_FILE = "healthcard_data.csv"
 COLUMNS = ["Computer ID", "Healthcard ID", "Date", "Patient Name", "Room No", "Doctor Name", "Total Amount", "Status"]
 
 if not os.path.exists(CSV_FILE) or os.path.getsize(CSV_FILE) == 0:
     pd.DataFrame(columns=COLUMNS).to_csv(CSV_FILE, index=False)
-else:
-    try:
-        check_df = pd.read_csv(CSV_FILE)
-        if check_df.empty or "Status" not in check_df.columns:
-            pd.DataFrame(columns=COLUMNS).to_csv(CSV_FILE, index=False)
-    except:
-        pd.DataFrame(columns=COLUMNS).to_csv(CSV_FILE, index=False)
 
 def get_next_id():
     try:
@@ -173,20 +56,16 @@ DOCTORS_LIST = [
     "Lab (Routine)", "Lab (Special)", "Dr. Atif Gulzar Sb", "Dr. Masood Sb", 
     "Dr. Saeed Ahmed Khan Sb", "Dr. Bashir Agha Sb", "Dr. Uzma Sohail", 
     "Dr. Iqbal Sb", "Dr. Fareed Agha Sb", "Dr. Fareed Kakar Sb", 
-    "Dr. Kishwer Rehman Sb", "Dr. Naseeb Ullah Shah Sb", "Dr. Noor Baloch Sb", 
+    "Dr. Kishwer Rehman Sb", "Dr. Naseeb Ullah Shah Sb", "Noor Baloch Sb", 
     "Uzma Rasheed", "Dr. Izahr Ud Din Sb"
 ]
 
-# Tabs Definition
 tab1, tab2, tab3 = st.tabs(["🔒 Add Patient", "📋 View Logs", "⏳ Claims System"])
 
-# ==========================================
-# --- TAB 1: ADD PATIENT RECORD FORM ---
-# ==========================================
+# --- TAB 1: ADD PATIENT ---
 with tab1:
     st.markdown('<div class="card-container">', unsafe_allow_html=True)
     st.markdown('<div class="form-header">📲 Patient Entry Module</div>', unsafe_allow_html=True)
-    
     next_id = get_next_id()
     
     with st.form(key="patient_entry_form", clear_on_submit=False):
@@ -198,7 +77,6 @@ with tab1:
         doc_name = st.selectbox("Doctor Name:", ["Select Doctor"] + DOCTORS_LIST, key="input_doc")
         amount = st.number_input("Total Amount (PKR):", min_value=0, step=100, key="input_amount")
         
-        st.markdown('<br>', unsafe_allow_html=True)
         submit_button = st.form_submit_button("💾 Save Patient Data")
         
         if submit_button:
@@ -210,7 +88,6 @@ with tab1:
                     new_row = [int(next_id), h_id, p_date.strftime('%d/%m/%Y'), p_name, room_no, doc_name, float(amount), "Pending"]
                     df.loc[len(df)] = new_row
                     df.to_csv(CSV_FILE, index=False)
-                    
                     st.success(f"Saved Successfully! ID: {next_id}")
                     st.session_state["last_saved_record"] = {
                         "comp_id": next_id, "h_id": h_id, "date": p_date.strftime('%d/%m/%Y'),
@@ -222,121 +99,76 @@ with tab1:
 
     if "last_saved_record" in st.session_state:
         rec = st.session_state["last_saved_record"]
-        st.markdown('<hr style="border:1px solid #CBD5E1;">', unsafe_allow_html=True)
-        
         pdf_styles = getSampleStyleSheet()
         pdf_buffer = io.BytesIO()
         pdf_doc = SimpleDocTemplate(pdf_buffer, pagesize=letter)
-        
-        pdf_elements = [
-            Paragraph("<b>HEALTHCARD MANAGEMENT SYSTEM</b>", pdf_styles['Heading1']),
-            Spacer(1, 15)
-        ]
-        
+        pdf_elements = [Paragraph("<b>HEALTHCARD MANAGEMENT SYSTEM</b>", pdf_styles['Heading1']), Spacer(1, 15)]
         table_data = [
-            ["Computer ID", str(rec['comp_id'])], ["Patient Name", rec['name']], ["Total Amount", f"PKR {rec['amount']}"]
+            ["Computer ID", str(rec['comp_id'])], ["Healthcard ID", str(rec['h_id'])], ["Date", str(rec['date'])],
+            ["Patient Name", str(rec['name'])], ["Room No", str(rec['room'])], ["Doctor Name", str(rec['doc'])], ["Total Amount", f"PKR {rec['amount']:,}"]
         ]
-        receipt_table = Table(table_data)
-        receipt_table.setStyle(TableStyle([
-            ('BACKGROUND', (0,0), (0,-1), colors.HexColor("#1E3A8A")),
-            ('TEXTCOLOR', (0,0), (0,-1), colors.white),
-            ('GRID', (0,0), (-1,-1), 1, colors.HexColor("#CBD5E1"))
-        ]))
-        pdf_elements.append(receipt_table)
+        t = Table(table_data)
+        t.setStyle(TableStyle([('BACKGROUND', (0,0), (0,-1), colors.lightgrey), ('GRID', (0,0), (-1,-1), 1, colors.grey)]))
+        pdf_elements.append(t)
         pdf_doc.build(pdf_elements)
-        
-        st.download_button(
-            label="🖨️ Download Print Slip",
-            data=pdf_buffer.getvalue(),
-            file_name=f"Slip_{rec['comp_id']}.pdf",
-            mime="application/pdf",
-            key="action_download_pdf"
-        )
-    st.markdown('</div>', unsafe_allow_html=True)
+        st.download_button(label="📥 Download Receipt PDF", data=pdf_buffer.getvalue(), file_name=f"receipt_{rec['comp_id']}.pdf", mime="application/pdf")
 
-# ==========================================
-# --- TAB 2: VIEW ALL RECORDS & MOBILE DASHBOARD ---
-# ==========================================
+# --- TAB 2: VIEW LOGS ---
 with tab2:
     st.markdown('<div class="card-container">', unsafe_allow_html=True)
     st.markdown('<div class="form-header">📋 Business Live Overview</div>', unsafe_allow_html=True)
     
     try:
-        # Yahan hum CSV ki jagah EXCEL_FILE se data read kar rahe hain
-        if os.path.exists(EXCEL_FILE):
-            df_all = pd.read_excel(EXCEL_FILE)
-            
+        if os.path.exists(CSV_FILE):
+            df_all = pd.read_csv(CSV_FILE)
             if df_all.empty:
                 st.info("No records inside datastore.")
             else:
-                # --- Search Bar Logic ---
-                search_query = st.text_input("🔍 Quick Search (Name / ID):", key="search_logs_tab2")
+                total_pkr = pd.to_numeric(df_all["Total Amount"], errors="coerce").sum()
+                approved_count = len(df_all[df_all["Status"] == "Approved"])
+                pending_count = len(df_all[df_all["Status"] == "Pending"])
                 
-                # --- Filter Status Logic ---
-                status_options = ["All"] + list(df_all["Status"].dropna().unique())
-                selected_status = st.selectbox("🚦 Filter Status:", status_options, key="filter_status_tab2")
+                col1, col2, col3 = st.columns(3)
+                with col1: st.markdown(f'<div class="metric-box">💰 Total Business<br><b>PKR {total_pkr:,.0f}</b></div>', unsafe_allow_html=True)
+                with col2: st.markdown(f'<div class="metric-box">✅ Approved Logs<br><b>{approved_count} Passed</b></div>', unsafe_allow_html=True)
+                with col3: st.markdown(f'<div class="metric-box">⏳ Pending Claims<br><b>{pending_count} Active</b></div>', unsafe_allow_html=True)
                 
-                # Data Filter Karna
+                search_query = st.text_input("🔍 Quick Search (Name / ID):", key="search_query_live_final_new")
+                status_options = ["All", "Pending", "Approved"]
+                selected_status = st.selectbox("🚦 Filter Status:", status_options, key="status_filter_live_final_new")
+                
                 filtered_df = df_all.copy()
                 if search_query:
-                    filtered_df = filtered_df[
-                        filtered_df["Patient Name"].astype(str).str.contains(search_query, case=False) | 
-                        filtered_df["Computer ID"].astype(str).str.contains(search_query, case=False)
-                    ]
-                
+                    filtered_df = filtered_df[filtered_df["Patient Name"].astype(str).str.contains(search_query, case=False) | filtered_df["Computer ID"].astype(str).str.contains(search_query, case=False)]
                 if selected_status != "All":
                     filtered_df = filtered_df[filtered_df["Status"] == selected_status]
                 
-                # Data ko table ki shakal mein dikhana
                 st.dataframe(filtered_df, use_container_width=True)
                 
-                # Export Button to Excel
-                st.markdown('<br>', unsafe_allow_html=True)
-                excel_data = io.BytesIO()
-                filtered_df.to_excel(excel_data, index=False)
-                st.download_button(
-                    label="📥 Export Report to Excel",
-                    data=excel_data.getvalue(),
-                    file_name=f"HMS_Report_{datetime.now().strftime('%d_%m_%Y')}.xlsx",
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                )
+                csv_buffer = io.StringIO()
+                filtered_df.to_csv(csv_buffer, index=False)
+                st.download_button(label="📥 Export Report to CSV", data=csv_buffer.getvalue(), file_name=f"HMS_Report_{datetime.now().strftime('%d_%m_%Y')}.csv", mime="text/csv")
         else:
             st.info("No records inside datastore.")
     except Exception as e:
         st.error(f"Error reading datastore: {e}")
-# ==========================================
-# --- TAB 3: MANAGE CLAIMS (MOBILE LIST) ---
-# ==========================================
+
+# --- TAB 3: CLAIMS SYSTEM ---
 with tab3:
     st.markdown('<div class="card-container">', unsafe_allow_html=True)
-    st.markdown('<div class="form-header">⏳ Claims Quick Clearance</div>', unsafe_allow_html=True)
-    
-    df_claims = pd.read_csv(CSV_FILE)
-    pending_records = df_claims[df_claims["Status"] == "Pending"]
-    
-    if pending_records.empty:
-        st.success("All clear! Zero pending logs outstanding.")
-    else:
-        # Mobile optimized block rendering for pending status clearances
-        for idx, row in pending_records.iterrows():
-            st.markdown(f"""
-            <div class="mobile-patient-card">
-                <b>🆔 ID:</b> {row['Computer ID']} | <b>🚪 Room:</b> {row['Room No']}<br>
-                <b>👤 Patient:</b> {row['Patient Name']}<br>
-                <b>🩺 Doc:</b> {row['Doctor Name']}<br>
-                <b>💰 Amount:</b> <span style="color:#1E3A8A; font-weight:bold;">PKR {row['Total Amount']}</span>
-            </div>
-            """, unsafe_allow_html=True)
-            
-        st.markdown('<hr style="border:1px solid #CBD5E1;">', unsafe_allow_html=True)
-        
-        pending_ids = pending_records["Computer ID"].tolist()
-        selected_id = st.selectbox("Select Target ID to Clear:", pending_ids, key="claim_select_id")
-        
-        if st.button("✅ Execute Immediate Approval", key="action_approve_claim"):
-            df_claims.loc[df_claims["Computer ID"] == int(selected_id), "Status"] = "Approved"
-            df_claims.to_csv(CSV_FILE, index=False)
-            st.success(f"ID {selected_id} approved smoothly!")
-            st.rerun()
-            
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('<div class="form-header">⏳ Claims Status Management</div>', unsafe_allow_html=True)
+    try:
+        if os.path.exists(CSV_FILE):
+            df_claims = pd.read_csv(CSV_FILE)
+            if df_claims.empty:
+                st.info("No pending claims found.")
+            else:
+                pending_df = df_claims[df_claims["Status"] == "Pending"]
+                if pending_df.empty:
+                    st.success("All claims are cleared!")
+                else:
+                    st.dataframe(pending_df, use_container_width=True)
+        else:
+            st.info("No claims database detected.")
+    except Exception as e:
+        st.error(f"Error loading Claims: {e}")
