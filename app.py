@@ -259,91 +259,51 @@ with tab1:
 # ==========================================
 with tab2:
     st.markdown('<div class="card-container">', unsafe_allow_html=True)
-    st.markdown('<div class="form-header">📈 Business Live Overview</div>', unsafe_allow_html=True)
+    st.markdown('<div class="form-header">📋 Business Live Overview</div>', unsafe_allow_html=True)
     
-    df_all = pd.read_csv(CSV_FILE)
-    
-    if df_all.empty:
-        st.info("No records inside datastore.")
-    else:
-        # Metrics indicators
-        total_pkr = pd.to_numeric(df_all["Total Amount"], errors="coerce").sum()
-        approved_count = len(df_all[df_all["Status"] == "Approved"])
-        pending_count = len(df_all[df_all["Status"] == "Pending"])
-        
-        # FIXED: Pure Python clean string variables used to completely avoid any template literal or HTML span crashes
-        txt_business = f"PKR {total_pkr:,.0f}"
-        txt_approved = f"{approved_count} Passed"
-        txt_pending = f"{pending_count} Active"
-        
-        st.markdown(f'<div class="metric-box" style="border-top-color: #2563EB;"><b>💰 Total Business</b><br><span style="font-size:18px; font-weight:bold; color:#1E3A8A;">{txt_business}</span></div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="metric-box" style="border-top-color: #16A34A;"><b>✅ Approved Logs</b><br><span style="font-size:18px; font-weight:bold; color:#16A34A;">{txt_approved}</span></div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="metric-box" style="border-top-color: #DC2626;"><b>⏳ Pending Claims</b><br><span style="font-size:18px; font-weight:bold; color:#DC2626;">{txt_pending}</span></div>', unsafe_allow_html=True)
-        
-        st.markdown('<br>', unsafe_allow_html=True)
-        
-        # Mobile search vertical alignment
-        search_query = st.text_input("🔍 Quick Search (Name / ID):", key="search_query_all")
-        status_filter = st.selectbox("🚦 Filter Status:", ["All", "Pending", "Approved"], key="status_filter_all")
+    try:
+        # Yahan hum CSV ki jagah EXCEL_FILE se data read kar rahe hain
+        if os.path.exists(EXCEL_FILE):
+            df_all = pd.read_excel(EXCEL_FILE)
             
-        filtered_df = df_all.copy()
-        if search_query:
-            filtered_df = filtered_df[
-                filtered_df['Patient Name'].astype(str).str.contains(search_query, case=False, na=False) |
-                filtered_df['Healthcard ID'].astype(str).str.contains(search_query, case=False, na=False) |
-                filtered_df['Computer ID'].astype(str).str.contains(search_query, case=False, na=False)
-            ]
-        if status_filter != "All":
-            filtered_df = filtered_df[filtered_df['Status'] == status_filter]
-            
-        # Responsive Native Grid Data Matrix Output
-        st.dataframe(filtered_df, use_container_width=True, hide_index=True)
-        
-        csv_buffer = io.StringIO()
-        filtered_df.to_csv(csv_buffer, index=False)
-        st.download_button(
-            label="📥 Export Report to Excel/CSV",
-            data=csv_buffer.getvalue(),
-            file_name=f"Report_{datetime.now().strftime('%d_%m_%Y')}.csv",
-            mime="text/csv",
-            key="excel_report_download_btn"
-        )
-        
-        # --- TOUCH CONTROL MANAGEMENT EDITOR ---
-        st.markdown('<hr style="border:1px solid #CBD5E1; margin-top:20px;">', unsafe_allow_html=True)
-        st.markdown('<p style="font-size:16px; font-weight:bold; color:#1E3A8A;">🛠️ Modify Selected Entry</p>', unsafe_allow_html=True)
-        
-        all_ids = df_all["Computer ID"].tolist()
-        target_id = st.selectbox("Choose Target ID to edit:", all_ids, key="modify_target_id")
-        
-        # Safely identify selected data row
-        selected_row = df_all[df_all["Computer ID"] == int(target_id)]
-        
-        if not selected_row.empty:
-            current_name = str(selected_row.iloc[0]["Patient Name"])
-            current_amount = int(float(selected_row.iloc[0]["Total Amount"]))
-            
-            new_patient_name = st.text_input("Change Patient Name:", value=current_name, key="edit_pname")
-            new_patient_amount = st.number_input("Change Amount:", value=current_amount, key="edit_pamount")
-            
-            edit_btn = st.button("✏️ Push Modifications", key="fire_edit_action")
-            delete_btn = st.button("❌ Remove Entry Permanently", key="fire_delete_action")
-            
-            if edit_btn:
-                df_all.loc[df_all["Computer ID"] == int(target_id), "Patient Name"] = new_patient_name
-                df_all.loc[df_all["Computer ID"] == int(target_id), "Total Amount"] = new_patient_amount
-                df_all.to_csv(CSV_FILE, index=False)
-                st.success("Modifications updated!")
-                st.rerun()
+            if df_all.empty:
+                st.info("No records inside datastore.")
+            else:
+                # --- Search Bar Logic ---
+                search_query = st.text_input("🔍 Quick Search (Name / ID):", key="search_logs_tab2")
                 
-            if delete_btn:
-                df_all = df_all[df_all["Computer ID"] != int(target_id)]
-                df_all.to_csv(CSV_FILE, index=False)
-                st.warning("Entry wiped.")
-                st.rerun()
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
+                # --- Filter Status Logic ---
+                status_options = ["All"] + list(df_all["Status"].dropna().unique())
+                selected_status = st.selectbox("🚦 Filter Status:", status_options, key="filter_status_tab2")
+                
+                # Data Filter Karna
+                filtered_df = df_all.copy()
+                if search_query:
+                    filtered_df = filtered_df[
+                        filtered_df["Patient Name"].astype(str).str.contains(search_query, case=False) | 
+                        filtered_df["Computer ID"].astype(str).str.contains(search_query, case=False)
+                    ]
+                
+                if selected_status != "All":
+                    filtered_df = filtered_df[filtered_df["Status"] == selected_status]
+                
+                # Data ko table ki shakal mein dikhana
+                st.dataframe(filtered_df, use_container_width=True)
+                
+                # Export Button to Excel
+                st.markdown('<br>', unsafe_allow_html=True)
+                excel_data = io.BytesIO()
+                filtered_df.to_excel(excel_data, index=False)
+                st.download_button(
+                    label="📥 Export Report to Excel",
+                    data=excel_data.getvalue(),
+                    file_name=f"HMS_Report_{datetime.now().strftime('%d_%m_%Y')}.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
+        else:
+            st.info("No records inside datastore.")
+    except Exception as e:
+        st.error(f"Error reading datastore: {e}")
 # ==========================================
 # --- TAB 3: MANAGE CLAIMS (MOBILE LIST) ---
 # ==========================================
